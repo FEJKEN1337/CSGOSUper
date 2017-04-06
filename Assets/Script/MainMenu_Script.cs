@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu_Script : MonoBehaviour {
 
+    Connect connect;
 	
 	void Start () {
-		
+        connect = gameObject.GetComponent<Connect>();
+
+        DontDestroyOnLoad(gameObject);
 	}
 	
 	
@@ -15,8 +18,10 @@ public class MainMenu_Script : MonoBehaviour {
 		
 	}
 
-   public  void Play_Button ()
+   public void Play_Button ()
     {
+        connect.ConnectedToServer();
         SceneManager.LoadScene(1);
+        
     }
 }
