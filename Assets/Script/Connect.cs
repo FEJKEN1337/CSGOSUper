@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Connect : Photon.MonoBehaviour {
 
@@ -17,6 +18,7 @@ public class Connect : Photon.MonoBehaviour {
 
     void OnJoinedLobby()
     {
+        SceneManager.LoadScene(1);
         PhotonNetwork.JoinRandomRoom();
         PhotonNetwork.CreateRoom(null);
     }
@@ -35,6 +37,12 @@ public class Connect : Photon.MonoBehaviour {
 		
 	}
 
-
+    private void OnLevelWasLoaded(int level)
+    {
+        if (level!= 0)
+        {
+            PhotonNetwork.JoinRandomRoom();
+        }
+    }
 
 }
