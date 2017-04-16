@@ -33,9 +33,10 @@ public class Connect : Photon.MonoBehaviour {
 	}
 	
 	
-	void Update () {
-		
-	}
+	void Update ()
+    {
+       
+    }
 
     private void OnLevelWasLoaded(int level)
     {
@@ -43,6 +44,41 @@ public class Connect : Photon.MonoBehaviour {
         {
             PhotonNetwork.JoinRandomRoom();
         }
+    }
+
+   // [PunRPC]
+    void PlayerJoin(PhotonPlayer Player)
+    {
+        PlayerList player = new PlayerList();
+        player.nick = Player.NickName;
+        player.Player = Player;
+
+        PlayerList.Players.Add(player);
+    }
+   // [PunRPC]
+    void PlayerDissconnet(PhotonPlayer Player)
+    {
+
+    }
+
+    void OnCreatedRoom()
+    {
+        photonView.RPC("Player Connect", PhotonTargets.AllBuffered, PhotonNetwork.player);
+    }
+
+
+    private void OnPlayerConnected(PhotonPlayer Player)
+    {
+        if (PhotonNetwork.isMasterClient)
+        {
+            photonView.RPC("Player Connected", PhotonTargets.AllBuffered, Player);
+        }
+    }
+
+
+    private void OnPlayerDisconnected(PhotonPlayer Player)
+    {
+
     }
 
 }

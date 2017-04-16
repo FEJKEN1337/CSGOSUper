@@ -13,39 +13,15 @@ public class MainMenu_Script : Photon.MonoBehaviour {
 	}
 	
 	
-	void Update () {
-		
+	void Update ()
+    {
+        
 	}
 
    public void Play_Button ()
     {
         connect.ConnectedToServer();
         
-    }
-
-    void PlayerJoin(PhotonPlayer Player)
-    {
-        
-    }
-
-    void PlayerDissconnet(PhotonPlayer Player)
-    {
-
-    }
-
-
-    private void OnPlayerConnected(PhotonPlayer Player)
-    {
-        if (PhotonNetwork.isMasterClient)
-        {
-            photonView.RPC("Player Connected", PhotonTargets.AllBuffered,Player);
-        }
-    }
-
-    
-    private void OnPlayerDisconnected(PhotonPlayer Player)
-    {
-     
     }
 
 
